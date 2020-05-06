@@ -16,35 +16,39 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'CovidApp UVG',
       theme: ThemeData(
         primaryColor: Color.fromRGBO(7, 139, 69, 1),
-        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: Scaffold(
+        primary: false,
         backgroundColor: Color.fromRGBO(59, 58, 59, 1),
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(70.0),
-          child: AppBar(
-            automaticallyImplyLeading: false,
-            backgroundColor: Color.fromRGBO(59, 58, 59, 1),
-            flexibleSpace: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Image.asset(
-                  'assets/uvglogo.png',
-                  fit: BoxFit.contain,
-                  height: 90,
-                ),
-                Expanded(
-                  child: Center(
-                    child: Text(
-                      'INICIAR SESIÓN',
-                      style: _biggerFont,
-                    ),
+          preferredSize: Size.fromHeight(100.0),
+          child: Padding(
+            padding: EdgeInsets.only(top: 30),
+            child: AppBar(
+              automaticallyImplyLeading: false,
+              backgroundColor: Color.fromRGBO(59, 58, 59, 1),
+              flexibleSpace: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Image.asset(
+                    'assets/uvglogo.png',
+                    fit: BoxFit.contain,
+                    height: 90,
+                  ),
+                  Expanded(
+                    child: Center(
+                      child: Text(
+                        'INICIAR SESIÓN',
+                        style: _biggerFont,
+                      ),
+                    )
                   )
-                )
-              ],
+                ],
+              ),
             ),
           ),
         ),
@@ -89,6 +93,11 @@ class LoginState extends State<Login> {
   final _smallerFont = const TextStyle(
     fontSize: 15.0,
     color: Colors.white,
+    fontFamily: 'SeoulNamsamCondensed'
+  );
+  final _textboxFont = const TextStyle(
+    fontSize: 20.0,
+    color: Colors.black,
     fontFamily: 'SeoulNamsamCondensed'
   );
   
@@ -181,7 +190,7 @@ class LoginState extends State<Login> {
                     child: TextField(
                       controller: myController,
                       autofocus: false,
-                      style: _smallerFont,
+                      style: _textboxFont,
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: Color.fromRGBO(231, 231, 231, 1),
