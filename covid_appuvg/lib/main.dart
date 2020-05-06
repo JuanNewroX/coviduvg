@@ -1,8 +1,11 @@
 import 'dart:ffi';
 
+import 'package:covid_appuvg/models/api_response.dart';
 import 'package:flutter/material.dart';
+import 'package:covid_appuvg/service/login_service.dart';
 
 import 'main_page.dart';
+import 'models/users.dart';
 
 void main() => runApp(MyApp());
 
@@ -84,6 +87,26 @@ class Login extends StatefulWidget {
 }
 
 class LoginState extends State<Login> {
+  final service = new LoginService();
+  APIResponse<List<User>> _apiResposnse;
+  bool _isloading = false;
+
+  @override
+  void initState(){
+    _fetchUsers();
+    super.initState();
+  }
+  _fetchUsers() async{
+    setState(() {
+      _isloading = true;
+    });
+
+    _apiResposnse = await service.getUserList();
+
+    setState(() {
+      _isloading = false;
+    });
+  }
   final _biggerFont = const TextStyle(
     fontSize: 30.0,
     color: Color.fromRGBO(59, 58, 59, 1),
@@ -119,46 +142,86 @@ class LoginState extends State<Login> {
         widthFactor: 1,
         child: Container(
           color: Colors.white,
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-              campo('Usuario', mController),
-              campo('Contraseña', mController2),
-              Center(
-                child: Container(
-                  padding: EdgeInsets.only(
-                    top: 20
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.transparent,
-                  ),
-                  child: Theme(
-                    data: Theme.of(context).copyWith(splashColor: Colors.transparent), 
+          child: Builder(
+            builder: (_){
+              if(_isloading){
+                return CircularProgressIndicator();
+              }
+              if(_apiResposnse.error){
+                print('ERROR');
+                return Center(child: Text(_apiResposnse.errorMessage));
+              }
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  campo('Usuario', mController),
+                  campo('Contraseña', mController2),
+                  Center(
                     child: Container(
+                      padding: EdgeInsets.only(
+                          top: 20
+                      ),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: Colors.green,
+                        color: Colors.transparent,
                       ),
-                      child: FractionallySizedBox(
-                        widthFactor: 0.75,
-                        child: FlatButton(
-                          onPressed: null,
-                          color: Colors.green,
-                          child: Text(
-                            'INICIAR SESIÓN',
-                            style: _smallerFont,
+                      child: Theme(
+                        data: Theme.of(context).copyWith(splashColor: Colors.transparent),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.green,
                           ),
+                          child: FractionallySizedBox(
+                            widthFactor: 0.75,
+                            child: FlatButton(
+                              onPressed: (){
+                                bool logged = false;
+                                String name = mController.text;
+                                String pass = mController2.text;
+                                for (User user in _apiResposnse.data){
+                                  if(user.pass == pass && user.name == name){
+                                    logged  = true;
+                                    Navigator.of(context).push(MaterialPageRoute(builder: (_) => MainPage()));
+                                  }
+                                }
+                                if(!logged){
+                                  showDialog(
+                                      context: context,
+                                      builder: (BuildContext context){
+                                        return AlertDialog(
+                                          title: Text("Login Failed"),
+                                          content: Text("Username or password are incorrect"),
+                                          actions:[
+                                            FlatButton(
+                                              child: Text("Close"),
+                                              onPressed: (){
+                                                Navigator.of(context).pop();
+                                              },
+                                            )
+                                          ],
+                                        );
+                                      }
+                                  );
+                                }
+                              },
+                              color: Colors.green,
+                              child: Text(
+                                'INICIAR SESIÓN',
+                                style: _smallerFont,
+                              ),
+                            ),
+                          ),
+                          height: 40,
                         ),
                       ),
-                      height: 40,                          
                     ),
-                  ),
-                ),
-              )
-            ],
-          ),
+                  )
+                ],
+              );
+            },
+          )
         ),
       ),
     );
