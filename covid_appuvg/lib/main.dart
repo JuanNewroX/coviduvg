@@ -2,6 +2,8 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 
+import 'main_page.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -16,7 +18,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'CovidApp UVG',
       theme: ThemeData(
-        primaryColor: Color.fromRGBO(7, 139, 69, 1)
+        primaryColor: Color.fromRGBO(7, 139, 69, 1),
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: Scaffold(
         backgroundColor: Color.fromRGBO(59, 58, 59, 1),
