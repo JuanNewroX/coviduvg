@@ -1,4 +1,4 @@
-import 'package:covid_appuvg/consentimiento.dart';
+import 'package:covid_appuvg/Seguimiento.dart';
 import 'package:flutter/material.dart';
 
 
@@ -160,7 +160,7 @@ class MainPage extends StatelessWidget {
 
                         trailing: CircleAvatar(radius: 18, backgroundColor: Colors.yellow,),
                         onTap: (){
-                          Navigator.of(context).push(MaterialPageRoute(builder: (_) => MyApp()));
+                          Navigator.of(context).push(MaterialPageRoute(builder: (_) => Seguimiento()));
                         },
                       ),
                       ListTile(
@@ -175,7 +175,7 @@ class MainPage extends StatelessWidget {
 
                         trailing: CircleAvatar(radius: 18, backgroundColor: Colors.red,),
                         onTap: (){
-                          Navigator.of(context).push(MaterialPageRoute(builder: (_) => MyApp()));
+                          Navigator.of(context).push(MaterialPageRoute(builder: (_) => Seguimiento()));
                         },
                       ),
 
@@ -191,7 +191,7 @@ class MainPage extends StatelessWidget {
 
                         trailing: CircleAvatar(radius: 18, backgroundColor: Colors.green,),
                         onTap: (){
-                          Navigator.of(context).push(MaterialPageRoute(builder: (_) => MyApp()));
+                          Navigator.of(context).push(MaterialPageRoute(builder: (_) => Seguimiento()));
                         },
                       ),ListTile(
 
@@ -205,7 +205,7 @@ class MainPage extends StatelessWidget {
 
                         trailing: CircleAvatar(radius: 18, backgroundColor: Colors.lightBlue,),
                         onTap: (){
-                          Navigator.of(context).push(MaterialPageRoute(builder: (_) => MyApp()));
+                          Navigator.of(context).push(MaterialPageRoute(builder: (_) => Seguimiento()));
                         },
                       ),ListTile(
 
@@ -219,7 +219,7 @@ class MainPage extends StatelessWidget {
 
                         trailing: CircleAvatar(radius: 18, backgroundColor: Colors.yellow,),
                         onTap: (){
-                          Navigator.of(context).push(MaterialPageRoute(builder: (_) => MyApp()));
+                          Navigator.of(context).push(MaterialPageRoute(builder: (_) => Seguimiento()));
                         },
                       ),ListTile(
 
@@ -233,7 +233,7 @@ class MainPage extends StatelessWidget {
 
                         trailing: CircleAvatar(radius: 18, backgroundColor: Colors.red,),
                         onTap: (){
-                          Navigator.of(context).push(MaterialPageRoute(builder: (_) => MyApp()));
+                          Navigator.of(context).push(MaterialPageRoute(builder: (_) => Seguimiento()));
                         },
                       ),ListTile(
 
@@ -247,7 +247,7 @@ class MainPage extends StatelessWidget {
 
                         trailing: CircleAvatar(radius: 18, backgroundColor: Colors.lightBlue,),
                         onTap: (){
-                          Navigator.of(context).push(MaterialPageRoute(builder: (_) => MyApp()));
+                          Navigator.of(context).push(MaterialPageRoute(builder: (_) => Seguimiento()));
                         },
                       ),
                     ],
