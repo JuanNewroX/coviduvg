@@ -1,3 +1,4 @@
+import 'package:covid_appuvg/CaseForm.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(Consentimiento());
@@ -71,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          // Add your onPressed code here!
+          Navigator.of(context).push(MaterialPageRoute(builder: (_) => CaseFrom()));// Add your onPressed code here!
         },
         label: Text('De acuerdo con los terminos'),
         icon: Icon(Icons.thumb_up),
