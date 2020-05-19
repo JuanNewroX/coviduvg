@@ -6,6 +6,10 @@ import 'package:flutter/material.dart';
 void main() => runApp(Seguimiento());
 
 class Seguimiento extends StatelessWidget {
+  String name;
+  String number;
+  Seguimiento({this.name, this.number});
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -15,25 +19,49 @@ class Seguimiento extends StatelessWidget {
         primaryColor: Color.fromRGBO(7, 139, 69, 1),
 
       ),
-      home: MyHomePage(title: 'Detalles del caso'),
+      home: MyHomePage(title: 'Detalles del caso', name: name, number: number,),
     );
   }
 }
+final _tileFont = const TextStyle(
+    fontSize: 20.0,
+    color: Colors.black,
+    fontFamily: 'SeoulNamsamCondensed'
+);
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  String name;
+  String number;
+  MyHomePage({Key key, this.title, this.name, this.number}) : super(key: key);
 
   final String title;
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _MyHomePageState createState() => _MyHomePageState(name: name, number: number);
 }
 
 
 class _MyHomePageState extends State<MyHomePage> {
+  String name;
+  String number;
+  _MyHomePageState({this.name, this.number});
+
   //static const color_gris = const Color(#E7E7E7),
 
   @override
   Widget build(BuildContext context) {
+    List<String> Personal = [
+      "Ubicacion: Las Lumbres, Oficina 502",
+      "Carrera: Ingenieria Bioinformatica"
+    ];
+    List<String> Sintomas = [
+      "Diarrea",
+      "Tos",
+      "Dificultad para respirar"
+    ];
+    List<String> Comorbilidades = [
+      "Asma",
+      "VIH"
+    ];
 
     return Scaffold(
       appBar: AppBar(
@@ -64,9 +92,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   //color: Colors.blue,
                   height: 125,
                   width: 235,
-                  child: Text('Sara Nohemi Zavala Gutierrez\n'+
-                      "+502 49183624\n"+
-                      "Identificador:"+ "12456",textAlign: TextAlign.center, style: TextStyle(fontSize: 18)),
+                  child: Text(name+"\n"+number+"\n"
+                      +
+                      "Identificador:"+ "12456",textAlign: TextAlign.center, style: _tileFont),
                 ),
               ],),
 
@@ -75,46 +103,33 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
                 custom.ExpansionTile(
-                    headerBackgroundColor: Color.fromRGBO(231, 231, 231, 1),
-                    iconColor: Colors.black,
+                    headerBackgroundColor: Color.fromRGBO(7, 139, 69, 1),
+                    iconColor: Colors.white,
                     title:Container(child: Text("Informacion Personal",
-                        style: new TextStyle(color: Colors.black,fontWeight: FontWeight.bold))),
+                        style: new TextStyle(color: Colors.white,fontWeight: FontWeight.bold))),
                     children: <Widget>[
-                      Container(
-                        height: 400,
-                        //color: Colors.black12,
-                      )
+                      ItemContainer(Personal)
                     ]
                 ),
 
                 custom.ExpansionTile(
                     headerBackgroundColor: Color.fromRGBO(7, 139, 69, 1),
-                    iconColor: Colors.black,
+                    iconColor: Colors.white,
                     title:Container(child: Text("Sintomas",
-                        style: new TextStyle(color: Colors.black, fontWeight: FontWeight.bold))),
+                        style: new TextStyle(color: Colors.white, fontWeight: FontWeight.bold))),
                     children: <Widget>[
-                      Container(
-                        height: 400,
-                        color: Colors.black12,
-                      )
+                      ItemContainer(Sintomas)
                     ]
                 ),
                 custom.ExpansionTile(
                     headerBackgroundColor: Color.fromRGBO(7, 139, 69, 1),
-                    iconColor: Colors.black,
+                    iconColor: Colors.white,
                     title:Container(child: Text("Comorbilidades",
-                        style: new TextStyle(color: Colors.black,fontWeight: FontWeight.bold))),
+                        style: new TextStyle(color: Colors.white,fontWeight: FontWeight.bold))),
                     children: <Widget>[
-                      Container(
-                        height: 400,
-                        color: Colors.black12,
-                      )
+                      ItemContainer(Comorbilidades)
                     ]
                 ),
-
-
-
-
               ],
             ),
             new Container(
@@ -141,6 +156,28 @@ class _MyHomePageState extends State<MyHomePage> {
 
         ),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+  Widget ItemContainer(List items){
+    return Container(
+        height: 175,
+        color: Colors.black12,
+        child: ListView.separated(
+          separatorBuilder: (_, __) => Divider(height: 1, color: Colors.green),
+          itemBuilder: (_, index){
+            return ListTile(
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Flexible(
+                      child: Text(items[index], style: _tileFont),
+                    )
+                  ],
+                )
+            );
+          },
+          itemCount: items.length,
+        )
     );
   }
 }

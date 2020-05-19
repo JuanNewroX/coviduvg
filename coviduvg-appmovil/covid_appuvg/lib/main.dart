@@ -155,8 +155,8 @@ class LoginState extends State<Login> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  campo('Usuario', mController),
-                  campo('Contraseña', mController2),
+                  campo('Usuario', mController, false),
+                  campo('Contraseña', mController2, true),
                   Center(
                     child: Container(
                       padding: EdgeInsets.only(
@@ -227,7 +227,7 @@ class LoginState extends State<Login> {
     );
   }
 
-  Widget campo(String labelMessage, TextEditingController myController) {
+  Widget campo(String labelMessage, TextEditingController myController, bool isPass) {
     return FractionallySizedBox(
       widthFactor: 1,
       child: Center(
@@ -251,6 +251,7 @@ class LoginState extends State<Login> {
                   child: Container(
                     height: 30,
                     child: TextField(
+                      obscureText: isPass ? true : false,
                       controller: myController,
                       autofocus: false,
                       style: _textboxFont,
