@@ -16,10 +16,10 @@ class Seguimiento extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primaryColor: Color.fromRGBO(7, 139, 69, 1),
-
+        //primaryColor: Colors.red
       ),
-      home: MyHomePage(title: 'Detalles del caso', name: name, number: number,),
+      home: MyHomePage(name: name, number: number,),
+
     );
   }
 }
@@ -56,21 +56,61 @@ class _MyHomePageState extends State<MyHomePage> {
     List<String> Sintomas = [
       "Diarrea",
       "Tos",
-      "Dificultad para respirar"
+      "Dificultad para respirar",
+
     ];
     List<String> Comorbilidades = [
       "Asma",
       "VIH"
     ];
-
+    final _biggerFont = const TextStyle(
+        fontSize: 25.0,
+        color: Colors.white,
+        fontFamily: 'SeoulNamsamCondensed'
+    );
+   // var controller;
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
+
+        primary: false,
+        //backgroundColor: Color.fromRGBO(59, 58, 59, 1),
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(100.0),
+          child: Container(
+           // margin: EdgeInsets.only(top: 10),
+            padding: EdgeInsets.only(top: 40),
+            child: AppBar(
+
+              automaticallyImplyLeading: false, backgroundColor: Color.fromRGBO(59, 58, 59, 1),
+              flexibleSpace: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+
+                  Expanded(
+
+                      child: Center(
+                      child: Text(
+                      'DETALLES DEL CASO',
+                      style: _biggerFont,
+                       ),
+                     )
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
       body: SingleChildScrollView(
 
         child: Column(
           children: <Widget>[
+
+            FractionallySizedBox(
+              widthFactor: 1,
+              child: Container(
+                height: 20,
+                color: Color.fromRGBO(7, 139, 69, 1),
+              ),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
@@ -101,31 +141,31 @@ class _MyHomePageState extends State<MyHomePage> {
             new Column(
               children: <Widget>[
 
-
                 custom.ExpansionTile(
-                    headerBackgroundColor: Color.fromRGBO(7, 139, 69, 1),
-                    iconColor: Colors.white,
+                    headerBackgroundColor: Color.fromRGBO(196, 196, 196, 1),
+                    iconColor: Colors.black,
                     title:Container(child: Text("Informacion Personal",
-                        style: new TextStyle(color: Colors.white,fontWeight: FontWeight.bold))),
+                        style: new TextStyle(color: Colors.black,fontWeight: FontWeight.bold))),
                     children: <Widget>[
+
                       ItemContainer(Personal)
                     ]
                 ),
 
                 custom.ExpansionTile(
-                    headerBackgroundColor: Color.fromRGBO(7, 139, 69, 1),
-                    iconColor: Colors.white,
+                    headerBackgroundColor: Color.fromRGBO(231, 231, 231, 1),
+                    iconColor: Colors.black,
                     title:Container(child: Text("Sintomas",
-                        style: new TextStyle(color: Colors.white, fontWeight: FontWeight.bold))),
+                        style: new TextStyle(color: Colors.black, fontWeight: FontWeight.bold))),
                     children: <Widget>[
                       ItemContainer(Sintomas)
                     ]
                 ),
                 custom.ExpansionTile(
-                    headerBackgroundColor: Color.fromRGBO(7, 139, 69, 1),
-                    iconColor: Colors.white,
+                    headerBackgroundColor: Color.fromRGBO(196, 196, 196,  1),
+                    iconColor: Colors.black,
                     title:Container(child: Text("Comorbilidades",
-                        style: new TextStyle(color: Colors.white,fontWeight: FontWeight.bold))),
+                        style: new TextStyle(color: Colors.black,fontWeight: FontWeight.bold))),
                     children: <Widget>[
                       ItemContainer(Comorbilidades)
                     ]
@@ -133,19 +173,30 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
             new Container(
+              height: 50,
+              width: 235,
               margin: EdgeInsets.only(top: 60),
               child: RaisedButton(
+                color: Color.fromRGBO(7, 139, 69, 1),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(20))),
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(builder: (_) => Consentimiento()));
                 },
-                child: const Text('Dar seguimiento', style: TextStyle(fontSize: 20)),
+                child: const Text('Dar seguimiento', ),
               ),
             ),
             new Container(
+
+              height: 50,
+              width: 200,
               margin: EdgeInsets.only(top: 20),
               child: RaisedButton(
+                color: Color.fromRGBO(59, 58, 59, 1),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(20))),
                 onPressed: () {},
-                child: const Text('No es un caso', style: TextStyle(fontSize: 20)),
+                child: const Text('No es un caso', style: TextStyle(fontSize: 20,color: Colors.white)),
               ),
 
             )
