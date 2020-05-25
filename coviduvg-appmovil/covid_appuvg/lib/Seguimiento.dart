@@ -24,7 +24,7 @@ class Seguimiento extends StatelessWidget {
   }
 }
 final _tileFont = const TextStyle(
-    fontSize: 20.0,
+    fontSize: 24.0,
     color: Colors.black,
     fontFamily: 'SeoulNamsamCondensed'
 );
@@ -183,7 +183,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(builder: (_) => Consentimiento()));
                 },
-                child: const Text('Dar seguimiento', ),
+                child: const Text('Dar seguimiento', style: TextStyle(fontSize: 16,color: Colors.white) ),
               ),
             ),
             new Container(
@@ -196,7 +196,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(20))),
                 onPressed: () {},
-                child: const Text('No es un caso', style: TextStyle(fontSize: 20,color: Colors.white)),
+                child: const Text('No es un caso', style: TextStyle(fontSize: 16,color: Colors.white)),
               ),
 
             )

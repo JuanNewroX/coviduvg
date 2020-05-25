@@ -21,6 +21,6 @@ class LoginService{
         return APIResponse<List<User>>(data: users);
       }
       return APIResponse<List<User>>(error: true, errorMessage: 'An error ocurred');
-    }).catchError((_) => APIResponse<List<User>>(error: true, errorMessage: 'An error ocurred api'));
+    }).catchError((_) => APIResponse<List<User>>(error: true, errorMessage: 'An error ocurred'));
   }
 }
