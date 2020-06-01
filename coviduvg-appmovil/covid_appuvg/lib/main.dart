@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
       title: 'CovidApp UVG',
       theme: ThemeData(
         primaryColor: Color.fromRGBO(7, 139, 69, 1),
+        fontFamily: 'SeoulNamsamCondensed'
       ),
       home: Scaffold(
         primary: false,

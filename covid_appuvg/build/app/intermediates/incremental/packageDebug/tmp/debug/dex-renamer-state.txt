@@ -1,0 +1,4 @@
+#Sat May 30 12:13:04 CST 2020
+base.0=C\:\\Users\\andrerodriguez\\Documents\\GitHub\\COVID\\covid_appuvg\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

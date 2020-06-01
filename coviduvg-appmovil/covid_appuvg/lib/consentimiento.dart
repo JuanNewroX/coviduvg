@@ -43,7 +43,7 @@ class Consentimiento extends StatelessWidget{
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          Navigator.of(context).push(MaterialPageRoute(builder: (_) => CaseFrom()));// Add your onPressed code here!
+          Navigator.of(context).push(MaterialPageRoute(builder: (_) => CaseFrom(sectionTitle: 'Datos Generales', patient: 'James Bond', description: 'Con estas preguntas se podrá conocer mejor su contexto personal y el ambiente donde se desenvuelve ',)));// Add your onPressed code here!
         },
         label: Text('De acuerdo con los terminos'),
         icon: Icon(Icons.thumb_up),
