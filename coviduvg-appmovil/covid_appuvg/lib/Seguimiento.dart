@@ -181,7 +181,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(20))),
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => Consentimiento()));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => Consentimiento(name: name)));
                 },
                 child: const Text('Dar seguimiento', style: TextStyle(fontSize: 16,color: Colors.white) ),
               ),

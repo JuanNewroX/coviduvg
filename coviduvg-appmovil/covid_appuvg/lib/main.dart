@@ -184,7 +184,10 @@ class LoginState extends State<Login> {
                                 for (User user in _apiResposnse.data){
                                   if(user.pass == pass && user.name == name){
                                     logged  = true;
-                                    Navigator.of(context).push(MaterialPageRoute(builder: (_) => MainPage()));
+                                    Navigator.of(context).push(MaterialPageRoute(
+                                      settings: RouteSettings(name: "/Main"),
+                                      builder: (context) => MainPage(),
+                                    ),);
                                   }
                                 }
                                 if(!logged){

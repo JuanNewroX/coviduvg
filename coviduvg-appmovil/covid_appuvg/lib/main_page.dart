@@ -1,6 +1,7 @@
 import 'package:covid_appuvg/Seguimiento.dart';
 import 'package:covid_appuvg/models/cases_for_listing.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 
 class MainPage extends StatefulWidget {
@@ -18,42 +19,50 @@ class casefilter extends State<MainPage>{
     new CasesForListing(
         name: 'Ricardo Valenzuela',
         number: '56952549',
-        status: 'Nuevo'
+        status: 'Nuevo',
+        date: DateTime.parse('2020-01-02')
     ),
     new CasesForListing(
         name: 'Sara Zavala',
         number: '43423412',
-        status: 'Confirmado'
+        status: 'Confirmado',
+        date: DateTime.parse('2020-02-03')
     ),
     new CasesForListing(
         name: 'Andre Rodriguez',
         number: '49380482',
-        status: 'NoCons'
+        status: 'NoCons',
+        date: DateTime.parse('2020-04-05')
     ),
     new CasesForListing(
         name: 'Diego Solorzano',
         number: '38049273',
-        status: 'Segundo'
+        status: 'Segundo',
+        date: DateTime.parse('2020-05-12')
     ),
     new CasesForListing(
         name: 'Amado Garcia',
         number: '42568334',
-        status: 'NoCons'
+        status: 'NoCons',
+        date: DateTime.parse('2020-01-15')
     ),
     new CasesForListing(
         name: 'Majo Castro',
         number: '12940324',
-        status: 'Confirmado'
+        status: 'Confirmado',
+        date: DateTime.parse('2020-03-25')
     ),
     new CasesForListing(
         name: 'Juan Romero',
         number: '38049273',
-        status: 'Segundo'
+        status: 'Segundo',
+        date: DateTime.parse('2020-04-12')
     ),
     new CasesForListing(
         name: 'Martin young',
         number: '12568345',
-        status: 'Nuevo'
+        status: 'Nuevo',
+        date: DateTime.parse('2020-04-22')
     ),
   ];
   List<CasesForListing> Fcases = List();
@@ -71,6 +80,7 @@ class casefilter extends State<MainPage>{
       isBlue = false;
     });
   }
+  final DateFormat _formatter = DateFormat('dd/MM/yyyy');
 
   final _textboxFont = const TextStyle(
       fontSize: 20.0,
@@ -301,13 +311,17 @@ class casefilter extends State<MainPage>{
                           setState(() {
                             Fcases.sort((a, b) => a.name.compareTo(b.name));
                           });
-                        }else{
+                        }else if(String == 'ZA'){
                           setState(() {
                             Fcases.sort((a, b) => b.name.compareTo(a.name));
                           });
+                        }else if(String == 'Date'){
+                          setState(() {
+                            Fcases.sort((a, b) => b.date.compareTo(a.date));
+                          });
                         }
                       },
-                      items: <String>['AZ', 'ZA']
+                      items: <String>['AZ', 'ZA', 'Date']
                           .map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
                             value: value,
@@ -357,6 +371,7 @@ class casefilter extends State<MainPage>{
                   height: 90,
                   color: Color.fromRGBO(231, 231, 231, 1),
                   child: new ListView.separated(
+
                     separatorBuilder: (_, __) => Divider(height: 1, color: Colors.green),
                     itemBuilder: (_, index){
                       return ListTile(
@@ -372,6 +387,7 @@ class casefilter extends State<MainPage>{
                             )
                           ],
                         ),
+                        subtitle: Text(_formatter.format(Fcases[index].date).toString()),
                         trailing: CircleAvatar(radius: 18, backgroundColor: (Fcases[index].status == 'NoCons') ? Colors.lightBlue : (Fcases[index].status=='Nuevo') ? Colors.green : (Fcases[index].status=='Segundo') ? Colors.yellow : (Fcases[index].status=='Confirmado') ? Colors.red : Colors.black),
                         onTap: (){
                           Navigator.of(context).push(MaterialPageRoute(builder: (_) => Seguimiento(name: Fcases[index].name, number: Fcases[index].number)));
